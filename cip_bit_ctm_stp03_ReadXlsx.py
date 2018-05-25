@@ -39,46 +39,46 @@ dashed = Side(border_style="dashed", color="000000")
 ###################################
 
 #### ESTILO 01 ####
-mesfmt = NamedStyle(name = 'nm_mesfmt')
+mesfmt = NamedStyle(name = 'mesfmt')
 mesfmt.font = Font(name="Calibri", size=12)
 mesfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 mesfmt.alignment =  Alignment(horizontal="center", vertical="center", text_rotation=90)
 
 #### ESTILO 02 ####
-wkdfmt = NamedStyle(name = 'nm_wkdfmt')
+wkdfmt = NamedStyle(name = 'wkdfmt')
 wkdfmt.fill =  PatternFill("solid", fgColor="696969")
 wkdfmt.font = Font(name='Calibri', size=12, bold=True, color='FFFFFF')
 wkdfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 wkdfmt.alignment =  Alignment(horizontal="center", vertical="center", text_rotation=90)
 
 #### ESTILO 03 ####
-wekfmt = NamedStyle(name = 'nm_wekfmt')
+wekfmt = NamedStyle(name = 'wekfmt')
 wekfmt.fill =  PatternFill("solid", fgColor="808080")
 wekfmt.font = Font(name='Calibri', size=11, bold=True, color='FFFFFF')
 wekfmt.alignment =  Alignment(horizontal="center", vertical="center")
 wekfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 04 ####
-hrendv = NamedStyle(name = 'nm_hrendv')
+hrendv = NamedStyle(name = 'hrendv')
 hrendv.fill =  PatternFill("solid", fgColor="C0C0C0")
 hrendv.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 05 ####
-hrendok = NamedStyle(name = 'nm_hrendok')
+hrendok = NamedStyle(name = 'hrendok')
 hrendok.fill =  PatternFill("solid", fgColor="4682B4")
 hrendok.font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
 hrendok.alignment =  Alignment(horizontal="center", vertical="center")
 hrendok.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 06 ####
-hrendnok = NamedStyle(name = 'nm_hrendnok')
+hrendnok = NamedStyle(name = 'hrendnok')
 hrendnok.fill =  PatternFill("solid", fgColor="ADD8E6")
 hrendnok.font = Font(name='Calibri', size=10, bold=True)
 hrendnok.alignment =  Alignment(horizontal="center", vertical="center")
 hrendnok.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 07 ####
-hrendout = NamedStyle(name = 'nm_hrendout')
+hrendout = NamedStyle(name = 'hrendout')
 hrendout.fill =  PatternFill("solid", fgColor="FF0000")
 hrendout.font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
 hrendout.alignment =  Alignment(horizontal="center", vertical="center")
