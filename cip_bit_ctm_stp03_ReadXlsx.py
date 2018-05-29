@@ -39,46 +39,46 @@ dashed = Side(border_style="dashed", color="000000")
 ###################################
 
 #### ESTILO 01 ####
-mesfmt = NamedStyle(name = 'mesfmt')
+mesfmt = NamedStyle(name = 'nm_mesfmt')
 mesfmt.font = Font(name="Calibri", size=12)
 mesfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 mesfmt.alignment =  Alignment(horizontal="center", vertical="center", text_rotation=90)
 
 #### ESTILO 02 ####
-wkdfmt = NamedStyle(name = 'wkdfmt')
+wkdfmt = NamedStyle(name = 'nm_wkdfmt')
 wkdfmt.fill =  PatternFill("solid", fgColor="696969")
 wkdfmt.font = Font(name='Calibri', size=12, bold=True, color='FFFFFF')
 wkdfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 wkdfmt.alignment =  Alignment(horizontal="center", vertical="center", text_rotation=90)
 
 #### ESTILO 03 ####
-wekfmt = NamedStyle(name = 'wekfmt')
+wekfmt = NamedStyle(name = 'nm_wekfmt')
 wekfmt.fill =  PatternFill("solid", fgColor="808080")
 wekfmt.font = Font(name='Calibri', size=11, bold=True, color='FFFFFF')
 wekfmt.alignment =  Alignment(horizontal="center", vertical="center")
 wekfmt.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 04 ####
-hrendv = NamedStyle(name = 'hrendv')
+hrendv = NamedStyle(name = 'nm_hrendv')
 hrendv.fill =  PatternFill("solid", fgColor="C0C0C0")
 hrendv.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 05 ####
-hrendok = NamedStyle(name = 'hrendok')
+hrendok = NamedStyle(name = 'nm_hrendok')
 hrendok.fill =  PatternFill("solid", fgColor="4682B4")
 hrendok.font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
 hrendok.alignment =  Alignment(horizontal="center", vertical="center")
 hrendok.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 06 ####
-hrendnok = NamedStyle(name = 'hrendnok')
+hrendnok = NamedStyle(name = 'nm_hrendnok')
 hrendnok.fill =  PatternFill("solid", fgColor="ADD8E6")
 hrendnok.font = Font(name='Calibri', size=10, bold=True)
 hrendnok.alignment =  Alignment(horizontal="center", vertical="center")
 hrendnok.border = Border(top=thin, left=thin, right=thin, bottom=thin)
 
 #### ESTILO 07 ####
-hrendout = NamedStyle(name = 'hrendout')
+hrendout = NamedStyle(name = 'nm_hrendout')
 hrendout.fill =  PatternFill("solid", fgColor="FF0000")
 hrendout.font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
 hrendout.alignment =  Alignment(horizontal="center", vertical="center")
@@ -293,26 +293,87 @@ while ( row <= conta ):
                     coluna = '{}'.format(colpfx[cold])
                     colrow = str(coluna)+str(row)
                     ws[colrow] = horaf
-                    ws[colrow].style = hrendnok
+                    ws[colrow].fill =  PatternFill("solid", fgColor="ADD8E6")
+                    ws[colrow].font = Font(name='Calibri', size=10, bold=True)
+                    ws[colrow].alignment =  Alignment(horizontal="center", vertical="center")
+                    ws[colrow].border = Border(top=thin, left=thin, right=thin, bottom=thin)
                     #print ("DENTRO DA META MAIS QUE 1 HORA - AZUL CLARO")
                 else:
                     #print("OH LOKO BICHO")
                     coluna = '{}'.format(colpfx[cold])
                     colrow = str(coluna)+str(row)
                     ws[colrow] = horaf
-                    ws[colrow].style = hrendok
+                    ws[colrow].fill =  PatternFill("solid", fgColor="4682B4")
+                    ws[colrow].font = Font(name='Calibri', size=10, bold=True, color='FFFFFF')
+                    ws[colrow].alignment =  Alignment(horizontal="center", vertical="center")
+                    ws[colrow].border = Border(top=thin, left=thin, right=thin, bottom=thin)
                     #print ("DENTRO DA META MENOS QUE 1 HORA - AZUL ESCUURO")
     row += 1
-    if ( row == conta and ontem == 0 ):
+    if ( row == conta and ontem == 0 and interno == 0 ):
+        print ("ROW1 {} CONTA {} ONTEM {} INTERNO {}".format(row, conta, ontem, interno))
         yest=datetime.date.fromordinal(datetime.date.today().toordinal()-1)
         diajob=str(yest.strftime('%Y-%m-%d'))
         row = 3
         ontem = 1
+        ##############################################3
+        #  SALVA DADOS INTERNOS DA CIP DIA DE HOJE
+        ##############################################3
+        dest_filename = 'Bitacora'+monthout+'.xlsx'
+        wb.save(filename = dest_filename)
+        print ("Arquivo INTERNO com dados de hoje {} gravado com sucesso.".format(dest_filename))
+        print (" ")
+
     if ( row == conta and ontem == 1 and interno == 0 ):
+        print ("ROW2 {} CONTA {} ONTEM {} INTERNO {}".format(row, conta, ontem, interno))
+
+        ##############################################
+        #   VERIFICA SE EXISTE A QUEBRA DO MES
+        ##############################################
+        mthyest=str(yest.strftime('%m'))
+        tday = datetime.date.fromordinal(datetime.date.today().toordinal())
+        mthtday=str(tday.strftime('%m'))
+        if ( mthtday == mthyest ):
+            print ("YEST {} e TDAY {}: ".format (yest,tday))
+            print("SEM QUEBRA DE MES ==>  MTHDAY {} MTHYEST {}".format(mthtday,mthyest))
+        else:
+            print("COM QUEBRA DE MES ==> MTHDAY {} MTHYEST {}".format(mthtday,mthyest))
+            monthend=str(yest.strftime('%y%m%d'))
+            print ("MONTHEND : {}".format(monthend2))
+        ##############################################
+        #   SALVA DADOS INTERNOS DA CIP DIA DE ONTEM
+        ##############################################
+        dest_filename = 'Bitacora'+monthout+'.xlsx'
+        wb.save(filename = dest_filename)
+        print ("Arquivo INTERNO com dados de ontem {} gravado com sucesso.".format(dest_filename))
+        print (" ")
+        #############################################
+        # RESET DAS VARIAVEIS
+        #############################################
         diajob = datetime.datetime.today().strftime('%Y-%m-%d')
         row = 3
         ontem = 0
         interno = 1
+
+    if ( row == conta and ontem == 0 and interno == 1 ):
+        print ("ROW1 {} CONTA {} ONTEM {} INTERNO {}".format(row, conta, ontem, interno))
+        yest=datetime.date.fromordinal(datetime.date.today().toordinal()-1)
+        diajob=str(yest.strftime('%Y-%m-%d'))
+        row = 3
+        ontem = 1
+        ##############################################3
+        #  SALVA DADOS EXTERNOS DA TIVIT DIA DE HOJE
+        ##############################################3
+        dest_filename = 'Bitacora'+monthout+'.xlsx'
+        wb.save(filename = dest_filename)
+
+    if ( row == conta and ontem == 1 and interno == 1 ):
+        print ("ROW3 {} CONTA {} ONTEM {} INTERNO {}".format(row, conta, ontem, interno))
+        ##############################################3
+        #  SALVA DADOS INTERNOS DA TIVIT DIA DE ONTEM
+        ##############################################3
+        dest_filename = 'Bitacora'+monthout+'.xlsx'
+        wb.save(filename = dest_filename)
+
     if ( ciclico == 1 ):
         ws[jobcell].value = jobname_old
 
@@ -321,5 +382,3 @@ while ( row <= conta ):
     metajob = "F"+str(row)
     ciclico = 0
 #############################################
-dest_filename = 'Bitacora'+monthout+'.xlsx'
-wb.save(filename = dest_filename)
